@@ -1,0 +1,4 @@
+android/build/
+android/releases/*.idsig
+.android-signing/
+node_modules/

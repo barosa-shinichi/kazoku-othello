@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#163e34">
+  <title>かぞくオセロ — はさんで、くるりん！</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <a class="brand" href="./" aria-label="OTHELLO ホーム"><span class="brand-icon"><i></i><i></i></span>OTHELLO<span class="brand-note">FAMILY FACE EDITION</span></a>
+      <button class="text-button" id="rules-button"><span class="help-icon">?</span>遊び方</button>
+    </header>
+    <main>
+      <section class="intro"><div><p class="eyebrow">PANDA, NEKO, KUMA, USAGI & ANIMALS</p><h1>家族で、くるりん！</h1><p class="subtitle">ぱんだも、ねこも、くまも、うさぎも、いぬ・ひよこも。顔がひっくり返る、わが家のオセロ。</p></div><span class="edition">06 FACES — 64 SQUARES<br><span>笑顔が増える、一局。</span></span></section>
+      <div class="game-layout">
+        <section class="play-area" aria-label="オセロの盤面">
+          <div class="board-top"><span><i class="live-dot"></i><span id="round-label">対局中</span></span><span id="move-count">MOVE 01</span></div>
+          <div class="board-wrap"><div class="column-labels" aria-hidden="true"><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span></div><div class="row-labels" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></div><div class="board" id="board" role="group" aria-label="8×8のオセロ盤"></div></div>
+          <p class="family-cheer" id="family-cheer" role="status" aria-live="polite">はさんで、くるりん。盤面を自分の顔でいっぱいに！</p>
+          <div class="board-bottom"><span><i class="hint-example"></i>小さな点は、石を置ける場所</span><span id="last-move">黒からスタート</span></div>
+          
+        </section>
+        <aside class="sidebar">
+          <section class="family-card" aria-labelledby="family-heading">
+            <div class="card-heading"><h2 id="family-heading">だれと、だれで遊ぶ？</h2><button class="text-button family-edit" id="family-edit" type="button">✎ 写真をかえる</button></div>
+            <p class="family-note">好きな顔を選んでね。対局中も変えられるよ！</p>
+            <div class="face-team"><span class="team-label">● 黒・先手</span><div class="face-options" id="black-faces" role="group" aria-label="黒の顔を選ぶ"></div></div>
+            <div class="face-team"><span class="team-label">○ 白・後手</span><div class="face-options" id="white-faces" role="group" aria-label="白の顔を選ぶ"></div></div>
+          </section>
+          <section class="match-card"><div class="match-main"><div class="card-heading"><h2>今回の対局</h2><span id="mode-badge" class="badge">VS COMPUTER</span></div>
+            <div class="scoreboard"><div class="player active" id="black-player"><span class="score-disc black" id="black-portrait"></span><span class="player-name" id="black-name">あなた</span><strong id="black-score">2</strong><span class="color-name">BLACK</span></div><span class="versus">vs</span><div class="player" id="white-player"><span class="score-disc white" id="white-portrait"></span><span class="player-name" id="white-name">コンピューター</span><strong id="white-score">2</strong><span class="color-name">WHITE</span></div></div>
+            <div class="status" id="status" role="status" aria-live="polite"><span class="status-dot"></span><div><strong id="status-title">あなたの番です</strong><p id="status-detail">点のあるマスに石を置きましょう。</p></div></div>
+            <div class="ai-help-control" id="ai-help-control" hidden><div class="ai-help-copy"><strong id="ai-help-player"></strong><p>一手だけ、最強AIにおまかせ。</p></div></div></div>
+            <div class="settings"><label for="mode">対戦モード</label><div class="select-wrap"><select id="mode"><option value="cpu">コンピューターと対戦</option><option value="local">ふたりで対戦</option></select></div><p id="mode-note" class="setting-note"></p><label for="difficulty">コンピューターの強さ</label><div class="select-wrap"><select id="difficulty"><option value="easy">やさしい</option><option value="normal" selected>ふつう</option><option value="hard">むずかしい</option><option value="strongest">最強AI</option></select></div><p id="difficulty-note" class="setting-note"></p><label class="toggle-label" for="hints"><span>置ける場所を表示</span><input id="hints" type="checkbox" checked><span class="toggle" aria-hidden="true"></span></label></div>
+            <button class="primary-button" id="new-game"><span>↻</span>新しい対局</button><button class="undo-button" id="undo" disabled>↶<span>一手もどす</span></button>
+          </section>
+          <section class="tip-card"><span class="tip-icon">✦</span><div><p class="eyebrow">A SMALL TIP</p><h3>角をとると、強くなる。</h3><p>四隅の石はひっくり返されません。<br>次の一手で、角への道を探してみよう。</p></div></section>
+        </aside>
+      </div>
+    </main>
+    <footer><span>MORE FACES. MORE SMILES.</span><span>もう一回！ が、止まらない。</span></footer>
+  </div>
+  <dialog id="rules-dialog"><button class="dialog-close" id="close-rules" aria-label="閉じる">×</button><p class="eyebrow">HOW TO PLAY</p><h2>はさんで、ひっくり返す。</h2><ol><li>黒が先手。交互に石を1つずつ置きます。</li><li>縦・横・斜めで相手の石をはさむと、その石が自分の色に変わります。</li><li>相手の石を1つ以上ひっくり返せる場所にだけ置けます。</li><li>置ける場所がない場合は自動でパス。両者とも置けなくなったら終了です。</li><li>最後に石の数が多いほうの勝ちです。</li></ol><p class="dialog-note">顔は「くま・ぱんだ・ねこ・うさぎ・いぬ・ひよこ」から選べます。相手と同じ顔を選ぶと、ふたりの顔が入れ替わります。<br>黒と白のふちが、それぞれのチームの目印です。<br>対戦モードは途中でも変更できます。盤面と手番はそのままです。<br>手番の人にだけ「最強AIお助け」ボタンが表示されます。押すと最強AIが一手だけ代わりに打ちます。<br>コンピューター対戦では白をCPUが担当します。<br>キーボードのTab・Enterでも操作できます。</p></dialog>
+  <dialog id="family-dialog"><button class="dialog-close" id="close-family" aria-label="閉じる">×</button><p class="eyebrow">FAMILY FACES</p><h2>かぞくの写真と名前</h2><p class="dialog-note dialog-lead">写真を選んだあと、顔の位置と大きさを合わせられます。写真と名前はこの端末に保存されます。</p><ul class="family-editor" id="family-editor"></ul><div class="dialog-actions"><button class="undo-button" id="add-member" type="button">＋ かぞくをふやす</button><button class="primary-button" id="close-family-done" type="button">できた</button></div><input type="file" id="photo-input" accept="image/*" hidden></dialog>
+  <dialog id="crop-dialog"><p class="eyebrow">PHOTO</p><h2>顔の位置を合わせよう</h2><div class="crop-stage"><canvas id="crop-canvas" width="300" height="300"></canvas><span class="crop-mask" aria-hidden="true"></span></div><label class="crop-zoom-label" for="crop-zoom">大きさ<input type="range" id="crop-zoom" min="1" max="4" step="0.02" value="1"></label><p class="dialog-note">写真を指やマウスで動かせます。</p><div class="dialog-actions"><button class="undo-button" id="cancel-crop" type="button">やめる</button><button class="primary-button" id="confirm-crop" type="button">これにする</button></div></dialog>
+  <dialog id="restart-dialog"><p class="eyebrow">NEW GAME</p><h2>新しい対局を始めますか？</h2><p>進行中の対局はリセットされます。</p><div class="dialog-actions"><button class="undo-button" id="cancel-restart">続ける</button><button class="primary-button" id="confirm-restart">新しく始める</button></div></dialog>
+  <script src="engine.js"></script>
+  <script src="game-store.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
