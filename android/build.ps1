@@ -36,6 +36,9 @@ function Invoke-Tool([string]$Executable, [string[]]$ToolArgs) {
     & $Executable @ToolArgs
     if ($LASTEXITCODE -ne 0) { throw "Tool failed with exit code ${LASTEXITCODE}: $Executable" }
 }
+foreach ($stale in @("$buildRoot/assets", "$buildRoot/classes", "$buildRoot/dex")) {
+    if (Test-Path -LiteralPath $stale) { Remove-Item -LiteralPath $stale -Recurse -Force }
+}
 foreach ($folder in @($buildRoot, $releaseRoot, $signingRoot, "$buildRoot/assets/www/assets", "$buildRoot/classes", "$buildRoot/dex")) {
     New-Item -ItemType Directory -Path $folder -Force | Out-Null
 }
@@ -82,7 +85,8 @@ $keystore = Join-Path $signingRoot 'family-release.jks'
 $passwordFile = Join-Path $signingRoot 'password.txt'
 if (!(Test-Path -LiteralPath $keystore)) {
     $secretBytes = [byte[]]::new(32)
-    [Security.Cryptography.RandomNumberGenerator]::Fill($secretBytes)
+    $rng = [Security.Cryptography.RandomNumberGenerator]::Create()
+    try { $rng.GetBytes($secretBytes) } finally { $rng.Dispose() }
     [IO.File]::WriteAllText($passwordFile, [Convert]::ToBase64String($secretBytes), [Text.UTF8Encoding]::new($false))
     Invoke-Tool $keytool @('-genkeypair', '-keystore', $keystore, '-storetype', 'JKS', '-storepass:file', $passwordFile, '-keypass:file', $passwordFile,
         '-alias', 'family', '-keyalg', 'RSA', '-keysize', '3072', '-validity', '10000', '-dname', 'CN=Kazoku Othello, O=Family, C=JP')
