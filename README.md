@@ -4,15 +4,13 @@
 
 このリポジトリは公開用です。もともとは家族の写真で遊ぶアプリですが、公開版ではイラストの顔（くま・うさぎ・ねこ・いぬ・ぱんだ・ひよこ）を初期データにしています。アプリ内の「写真をかえる」から、自分の写真に差し替えて遊べます。差し替えた写真と名前は端末内にのみ保存され、どこにも送信されません。
 
-## 遊ぶ・手に入れる
+## 遊ぶ・ダウンロード
 
-| 種類 | URL | 説明 |
-| --- | --- | --- |
-| ブラウザー版 | https://barosa-shinichi.github.io/kazoku-othello/ | インストール不要。スマホでも遊べます。Safariの「ホーム画面に追加」やChromeの「ホーム画面に追加」で、アプリのように使えます。 |
-| ダウンロード版 | https://github.com/barosa-shinichi/kazoku-othello/archive/refs/heads/main.zip | ZIPを展開して `index.html` を開くと、ネットにつながっていなくても遊べます。 |
-| Android版（APK） | https://github.com/barosa-shinichi/kazoku-othello/raw/main/android/releases/kazoku-othello-1.0.0.apk | 約190KB、Android 8.0以降。インストール方法は [android/releases/インストール手順.md](android/releases/インストール手順.md) を参照してください。提供元不明のアプリを許可する操作が必要です。 |
+- ▶️ ブラウザーですぐ遊ぶ： https://barosa-shinichi.github.io/kazoku-othello/
+- 📦 ダウンロード版（ZIP）： https://github.com/barosa-shinichi/kazoku-othello/archive/refs/heads/main.zip
+- 📱 Android版（APK・約190KB）： https://github.com/barosa-shinichi/kazoku-othello/raw/main/android/releases/kazoku-othello-1.0.0.apk
 
-リポジトリ全体は https://github.com/barosa-shinichi/kazoku-othello です。
+ブラウザー版はインストール不要で、スマートフォンでも遊べます。ホーム画面に追加すると、アプリのように開けます。ダウンロード版はZIPを展開して `index.html` を開くと、通信がなくても遊べます。Android版はAndroid 8.0以降が対象で、インストール方法は[インストール手順](android/releases/インストール手順.md)を参照してください。
 
 ## 起動
 
